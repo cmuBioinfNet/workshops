@@ -6,17 +6,7 @@ In this tutorial we will map 1M RNA-seq reads on S. aureus genome with Bowtie on
 
 # Prerequisite 
 
-## Download genome
-
-In general, a good place to download a genome sequence together with the corresponding GFF annotation is NCBI Assembly (https://www.ncbi.nlm.nih.gov/assembly/GCF_001281145.1/). For human and mouse, one may however prefer the GENCODE project (https://www.gencodegenes.org). Here we will download *S.aureus* genome from NCBI Assembly database.
-
-    # download the genome of S.aureus, strain SA564 from NCBI Assembly including the GFF annotations
-    wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/281/145/GCA_001281145.1_ASM128114v1/GCA_001281145.1_ASM128114v1_genomic.gff.gz
-    wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/281/145/GCA_001281145.1_ASM128114v1/GCA_001281145.1_ASM128114v1_genomic.fna.gz
-
-
-
-## Download RNA-seq reads
+## Download RNA-seq reads to map
 
 Using sratoolkit download from NCBI GEO database 100k RNA-seq reads for *S.aureus* genome and convert into FASTQ format.
 
@@ -28,12 +18,25 @@ Alternatively, download the FASTQ files here:
  - [FASTQ for read2](SRR3994405_2.fastq.bz2)
 
 
+## Download genome
+
+In general, a good place to download a genome sequence together with the corresponding GFF annotation is NCBI Assembly (https://www.ncbi.nlm.nih.gov/assembly/GCF_001281145.1/). For human and mouse, one may however prefer the GENCODE project (https://www.gencodegenes.org). Here we will download *S.aureus* genome from NCBI Assembly database.
+
+    # download the genome of S.aureus, strain SA564 from NCBI Assembly including the GFF annotations
+    wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/281/145/GCA_001281145.1_ASM128114v1/GCA_001281145.1_ASM128114v1_genomic.gff.gz
+    wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/281/145/GCA_001281145.1_ASM128114v1/GCA_001281145.1_ASM128114v1_genomic.fna.gz
+
+
+## Index the genome
+    module add UHTS/Aligner/bwa/0.7.13
+    bwa index GCA_001281145.1_ASM128114v1_genomic.fna.gz
+    
+
+# Analysis
 
 ## Map reads to the genome
-
     module add UHTS/Aligner/bwa/0.7.13
     module add UHTS/Analysis/samtools/1.3
-    bwa index GCA_001281145.1_ASM128114v1_genomic.fna.gz
     bwa mem GCA_001281145.1_ASM128114v1_genomic.fna.gz <(bzcat SRR3994405_1.fastq.bz2) <(bzcat SRR3994405_2.fastq.bz2) | samtools view -Sb - | samtools sort - > SRR3994405.bam
     samtools index SRR3994405.bam
     
