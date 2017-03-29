@@ -29,12 +29,16 @@ Alternatively, download the FASTQ files here:
 
 
 
-## Map reads to the genome
+## Map reads to the genome
 
-    module add UHTS/Aligner/bowtie2/2.2.4
+    module add UHTS/Aligner/bwa/0.7.13
+    module add UHTS/Analysis/samtools/1.3
+    bwa index GCA_001281145.1_ASM128114v1_genomic.fna.gz
+    bwa mem GCA_001281145.1_ASM128114v1_genomic.fna.gz <(bzcat SRR3994405_1.fastq.bz2) <(bzcat SRR3994405_2.fastq.bz2) | samtools view -Sb - | samtools sort - > SRR3994405.bam
+    samtools index SRR3994405.bam
     
 
-
+## Quantify number of read per gene
 
 
 
