@@ -49,17 +49,20 @@ In general, a good place to download a genome sequence together with the corresp
     module add R/3.3.2;
     R
     
-The enter the following R code to quantify the number of read in the genes
+Use the following R code to quantify the number of read in the genes
 
     library(GenomicAlignments)
     library(rtracklayer)
-    gff <- import.gff("GCF_000011265.1_ASM1126v1_genomic.fna.gz",feature="gene")
+    
+    gff <- import.gff("GCF_000011265.1_ASM1126v1_genomic.gff.gz",feature="gene")
     bf <- BamFileList(c("SRR3994405.bam","SRR3994406.bam"))
     n <- summarizeOverlaps(gff,bf)
     
-    # list of genes with >=100 mapped reads
-    n <- n[rowSums(assay(n)<100)==0]
+    # uncomment to add a column with the sequence of the start codon
+    #values(n)$start_codon <- getSeq(FaFile("GCF_000011265.1_ASM1126v1_genomic.fna"),promoters(rowRanges(n),0,3))
+    
+    rowRanges(n)$n <- assay(n)
+    write.table(head(as.data.frame(rowRanges(n))),file="count.txt",sep="\t",row.names=FALSE)
 
 
     
-
