@@ -27,9 +27,12 @@ Alternatively, download the FASTQ files here:
  - [FASTQ for read1](SRR3994405_1.fastq.bz2)
  - [FASTQ for read2](SRR3994405_2.fastq.bz2)
 
-Commands
+
+
+## Map reads to the genome
 
     module add UHTS/Aligner/bowtie2/2.2.4
+    
 
 
 
