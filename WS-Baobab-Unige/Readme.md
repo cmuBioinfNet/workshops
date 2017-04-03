@@ -128,4 +128,4 @@ The unix command `disown` is useful to avoid the running jobs you launch in a ba
 
 # Permanent account
 
-Your account to BAOBAB are temporary. Obtainting a permanent account is simple and free, see [here](https://plone.unige.ch/distic/pub/hpc) to request for a permanent account.
+Your account to BAOBAB is temporary (until April 30th). Obtainting a permanent account is simple and free, see [here](https://plone.unige.ch/distic/pub/hpc).
