@@ -34,6 +34,9 @@ We want to download 100k RNA-seq reads for *S.aureus* genome using `sratoolkit` 
 Unfortunately only sratoolkit version `2.4.5-2` is installed on BAOBAB, and a more recent version is required for the new directory architecture of NCBI to be reconnized. You can install latest `sratoolkit` version in your local folder with:
 
     curl https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz | tar -zxvf -
+    
+And then use it:
+
     ./sratoolkit.2.8.2-1-ubuntu64/bin/fastq-dump --bzip2 --split-3 -v -X 100000 SRR3994405
     ./sratoolkit.2.8.2-1-ubuntu64/bin/fastq-dump --bzip2 --split-3 -v -X 100000 SRR3994406
 
@@ -57,29 +60,25 @@ In general, a good place to download a genome sequence together with the corresp
 
 
 ## Index the genome with BWA
-    module add bwa/075a
-    bwa index GCF_000011265.1_ASM1126v1_genomic.fna.gz
+    srun bash -c 'bwa index GCF_000011265.1_ASM1126v1_genomic.fna.gz'
     
 
 # Analysis
 
 ## Map the reads to the genome with BWA
-    module add bwa/075a
-    module add samtools/1.3
-    bwa mem GCF_000011265.1_ASM1126v1_genomic.fna.gz <(bzcat SRR3994405_1.fastq.bz2) <(bzcat SRR3994405_2.fastq.bz2) | samtools view -Sb - | samtools sort - > SRR3994405.bam
-    samtools index SRR3994405.bam
-    bwa mem GCF_000011265.1_ASM1126v1_genomic.fna.gz <(bzcat SRR3994406_1.fastq.bz2) <(bzcat SRR3994406_2.fastq.bz2) | samtools view -Sb - | samtools sort - > SRR3994406.bam
-    samtools index SRR3994406.bam
+    srun bash -c 'bwa mem GCF_000011265.1_ASM1126v1_genomic.fna.gz <(bzcat SRR3994405_1.fastq.bz2) <(bzcat SRR3994405_2.fastq.bz2) | samtools view -Sb - | samtools sort - > SRR3994405.bam'
+    srun bash -c 'samtools index SRR3994405.bam'
+    srun bash -c 'bwa mem GCF_000011265.1_ASM1126v1_genomic.fna.gz <(bzcat SRR3994406_1.fastq.bz2) <(bzcat SRR3994406_2.fastq.bz2) | samtools view -Sb - | samtools sort - > SRR3994406.bam'
+    srun bash -c 'samtools index SRR3994406.bam'
 
 ## Quantify number of read per gene with R
-    module add r/321
     R
     
-## Install few standard Bioconductor packages (in a personal library)
+### Install few standard Bioconductor packages (in a personal library)
     source("http://bioconductor.org/biocLite.R")
     biocLite(c("GenomicAlignments","rtracklayer"))
 
-## Quantify number of read
+### Quantify number of read
 Use the following R code to quantify the number of read in the genes
 
     library(GenomicAlignments)
