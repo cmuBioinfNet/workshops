@@ -99,7 +99,6 @@ Use the following R code to quantify the number of read in the genes
     # 1) launch X11 server (XQuartz) on your local machine
     # 2) connect with ssh -X to BAOBAB
     ssh -X login@baobab.unige.ch
-    module add igv/2349
     igv.sh
     
     
