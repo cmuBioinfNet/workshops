@@ -86,6 +86,12 @@ In general, a good place to download a genome sequence together with the corresp
     srun bash -c 'bwa mem GCF_000011265.1_ASM1126v1_genomic.fna.gz <(bzcat SRR3994406_1.fastq.bz2) <(bzcat SRR3994406_2.fastq.bz2) | samtools view -Sb - | samtools sort - > SRR3994406.bam'
     srun bash -c 'samtools index SRR3994406.bam'
 
+## Visualize mapping results 
+    # 1) launch X11 server (XQuartz) on your local machine
+    # 2) connect with ssh -X to BAOBAB
+    ssh -X login@baobab.unige.ch
+    srun igv.sh
+    
 ## Quantify number of read per gene with R
     srun R --vanilla
     
@@ -110,12 +116,7 @@ Use the following R code to quantify the number of read in the genes
     write.table(as.data.frame(rowRanges(n)),file="count.txt",sep="\t",row.names=FALSE)
 
 
-## visualize mapping results 
-    # 1) launch X11 server (XQuartz) on your local machine
-    # 2) connect with ssh -X to BAOBAB
-    ssh -X login@baobab.unige.ch
-    srun igv.sh
-    
+
     
     
 
