@@ -14,7 +14,7 @@ Some documentation on BAOBAB are available [here](http://baobabmaster.unige.ch/e
 Similarly to Vital-IT, software versioning is controled with the command `module`.
 You can list available modules with `module av`, and load a module with `module add <module name>`. For example in the following we will use the following modules:
 
-    module add bowtie2/210
+    module add bowtie2/210
     module add samtools/1.3
     module add igv/2349
     module add r/321
@@ -24,17 +24,24 @@ You can list available modules with `module av`, and load a module with `module 
 
 ## Download RNA-seq reads to map
 
-Using sratoolkit download from NCBI GEO database 100k RNA-seq reads for *S.aureus* genome and convert into FASTQ format.
+We want to download 100k RNA-seq reads for *S.aureus* genome using `sratoolkit` in FASTQ format with the following commands:
 
-    module add UHTS/Analysis/sratoolkit/2.8.0
     fastq-dump --bzip2 --split-3 -v -X 100000 SRR3994405
     fastq-dump --bzip2 --split-3 -v -X 100000 SRR3994406
 
-Alternatively, download the FASTQ files here:
+Unfortunately only sratoolkit version `2.4.5-2` is installed on BAOBAB, and a more recent version is required for the new directory architecture of NCBI to be reconnized. You can rapidely install latest `sratoolkit` version with:
+
+    curl https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz | tar -ztvf -
+
+
+Alternatively download the FASTQ files from here:
  - [SRR3994405_1.fastq.bz2](SRR3994405_1.fastq.bz2)
  - [SRR3994405_2.fastq.bz2](SRR3994405_2.fastq.bz2)
  - [SRR3994406_1.fastq.bz2](SRR3994406_1.fastq.bz2)
  - [SRR3994406_2.fastq.bz2](SRR3994406_2.fastq.bz2)
+
+
+
 
 
 ## Download genome
