@@ -1,6 +1,19 @@
 
 # Introduction
-In this tutorial we will map 1M RNA-seq reads on S. aureus genome with Bowtie on Baobab.
+In this tutorial we will map 1M RNA-seq reads on S. aureus genome with Bowtie on Baobab cluster.
+
+## Connexion
+Connect with SSH using your ISIS login/password
+
+    ssh login@baobab.unige.ch
+    
+    
+    
+    module add bowtie2/210
+    module add samtools/1.3
+    module add igv/2349
+    module add r/321
+    
 
 
 
