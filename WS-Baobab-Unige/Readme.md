@@ -6,15 +6,18 @@ In this tutorial we will map 1M RNA-seq reads on S. aureus genome with Bowtie on
 Connect with SSH using your ISIS login/password
 
     ssh login@baobab.unige.ch
-    
-    
-    
-    module add bowtie2/210
+
+## Documentation
+Some documentation on BAOBAB are available [here](http://baobabmaster.unige.ch/enduser/src/enduser/enduser.html)
+
+## Modules
+Similarly to Vital-IT, software versioning is controled with the command `module`.
+You can list available modules with `module av`, and load a module with `module add <module name>`. For example in the following we will use the following modules:
+
+    module add bowtie2/210
     module add samtools/1.3
     module add igv/2349
     module add r/321
-    
-
 
 
 # Prerequisite 
