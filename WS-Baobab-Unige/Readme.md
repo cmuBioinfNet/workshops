@@ -12,14 +12,29 @@ Connect with SSH using your ISIS login/password. Create a directory for the work
 ## Documentation
 Some documentation on BAOBAB are available [here](http://baobabmaster.unige.ch/enduser/src/enduser/enduser.html)
 
+### Basic SLURM commands
+
+    squeue    # list the running jobs
+    srun      # run a command on the cluster
+    sbatch    # launch a batch script on the cluster
+    skill     # kill a job
+
+### Reservation for the Workshop
+5 node of the cluster have been reserved for the workshop. You can use the reserved nodes with the following option:
+
+    srun --partition=shared --reservation=dayera_75 <command>
+    
+    
+
 ## Modules
 Similarly to Vital-IT, software versioning is controled with the command `module`.
-You can list available modules with `module av`, and load a module with `module add <module name>`. For example in the following we will use the following modules:
+You can list and search for available modules with `module spider [pattern]`. This command is also useful to list dependencies between modules, then load a module with `module add <module name>`. For example in the following we will use the following modules:
 
     module add bwa/075a
     module add samtools/1.3
-    module add igv/2349
-    module add r/321
+    module add igv
+    module add GCC/4.9.3-2.25 OpenMPI/1.10.2 R/3.3.2
+
 
 
 # Prerequisite 
@@ -72,7 +87,7 @@ In general, a good place to download a genome sequence together with the corresp
     srun bash -c 'samtools index SRR3994406.bam'
 
 ## Quantify number of read per gene with R
-    R
+    srun R --vanilla
     
 ### Install few standard Bioconductor packages (in a personal library)
     source("http://bioconductor.org/biocLite.R")
@@ -99,8 +114,14 @@ Use the following R code to quantify the number of read in the genes
     # 1) launch X11 server (XQuartz) on your local machine
     # 2) connect with ssh -X to BAOBAB
     ssh -X login@baobab.unige.ch
-    igv.sh
+    srun igv.sh
     
     
+    
+
+
+Useful command:
+
+    disown   # remove 
     
     
