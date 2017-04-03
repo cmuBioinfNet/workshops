@@ -126,4 +126,6 @@ Use the following R code to quantify the number of read in the genes
 The unix command `disown` is useful to avoid the running jobs you launch in a bash on a server to be killed when you loose the connection.
 
 
+# Permanent account
 
+Your account to BAOBAB are temporary. Just request for a permanent account to hpc@unige.ch if interested by a permanent account.
