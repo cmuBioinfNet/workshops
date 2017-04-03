@@ -121,7 +121,7 @@ Use the following R code to quantify the number of read in the genes
     
 
 
-# Useful command:
+# Useful command
 
 The unix command `disown` is useful to avoid the running jobs you launch in a bash on a server to be killed when you loose the connection.
 
