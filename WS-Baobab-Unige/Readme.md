@@ -37,7 +37,7 @@ You can list and search for available modules with `module spider [pattern]`. Th
 
 
 
-# RNA-seq Data Analsis Prerequisite 
+# RNA-seq Data Analysis Prerequisite 
 
 ## Download RNA-seq reads to map
 
