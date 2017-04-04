@@ -17,7 +17,7 @@ Some documentation on BAOBAB are available [here](http://baobabmaster.unige.ch/e
     squeue    # list the running jobs
     srun      # run a command on the cluster
     sbatch    # launch a batch script on the cluster
-    skill     # kill a job
+    scancel   # kill a job
 
 ### Reservation for the Workshop
 5 node of the cluster have been reserved for the workshop. You can use the reserved nodes with the following option:
