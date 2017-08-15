@@ -7,7 +7,7 @@ In order to have all the same environment, we will use the official Bioconductor
 2. Launch the docker application you just install
 3. Open settings (or Preferences). In panel *"Advanced"*, set the desired number of CPUs and memory allocated to the VMs
 4. Run in a terminal 
-   `docker run -p 80:8787 -v $(pwd):./export bioconductor/release_core2:R3.4.1_Bioc3.5`
+   `docker run -p 80:8787 -v $(pwd):/export bioconductor/release_core2:R3.4.1_Bioc3.5`
 
 
 
