@@ -7,7 +7,7 @@ paste <(zcat file1.gz) <(zcat file2.gz) | gzip > out.gz
 ```
 The syntax is for example interesting to unzip a `fastq.gz` file on the fly, send it directly to a read mapper and avoid a large  intermediate `.fastq`:
 ```
-bwa mem data/SA564.fasta <(zcat sample_R1.fastq.gz | head -n1000) <(zcat sample_R2.fastq.gz | head -n1000) | samtools view -bS - | samtools sort - > sample.bam 
+bwa mem ref.fasta <(zcat sample_R1.fastq.gz | head -n1000) <(zcat sample_R2.fastq.gz | head -n1000) | samtools view -bS - | samtools sort - > sample.bam 
 ```
 
 
