@@ -1,19 +1,34 @@
 # Introduction
 
 ## `<(command)` 
-`<(command)` is a bash syntax to replace an input file by the output of a command, and is useful to avoid intermediate files. For example to paste the content of 2 gzipped file, one may use:
-`paste <(zcat file1.gz) <(zcat file2.gz)`
+`<(command)` is a bash syntax to replace an input file by the output of a command and is useful to avoid intermediate files. For example, to paste the content of 2 gzipped file, one may use:
+```
+paste <(zcat file1.gz) <(zcat file2.gz) | gzip > out.gz
+```
+The syntax is for example interesting to unzip a `fastq.gz` file on the fly, send it directly to a read mapper and avoid a large  intermediate `.fastq`:
+```
+bwa mem data/SA564.fasta <(zcat sample_R1.fastq.gz | head -n1000) <(zcat sample_R2.fastq.gz | head -n1000) | samtools view -bS - | samtools sort - > sample.bam 
+```
 
 
-## ln -s
 
-## awk
 
-## xargs
 
-## sed
 
-## make
+
+
+## `ln -s`
+`ln` is a command to create hard or symbolic links (with `-s`) and is useful to avoid duplicating large files.
+
+## `xargs`
+
+## `find`
+
+## `awk`
+
+## `sed`
+
+## `make`
 
 Create a `Makefile` with the following content:
 ```
