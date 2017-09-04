@@ -1,7 +1,9 @@
 # Introduction
 
+## `<(command)` 
+`<(command)` is a bash syntax to replace an input file by the output of a command, and is useful to avoid intermediate files. For example to paste the content of 2 gzipped file, one may use:
+`paste <(zcat file1.gz) <(zcat file2.gz)`
 
-## paste <(zcat file1.gz) <(zcat file2.gz)
 
 ## ln -s
 
