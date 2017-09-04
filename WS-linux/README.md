@@ -21,10 +21,20 @@ bwa mem ref.fasta <(zcat sample_R1.fastq.gz | head -n1000) <(zcat sample_R2.fast
 `ln` is a command to create hard or symbolic links (with `-s`) and is useful to avoid duplicating large files.
 
 ## `xargs`
+`xargs` is a linux command to pass the output of a comand as argument to another command. For example to rename a set of file:
+
+
+
 
 ## `find`
 
 ## `awk`
+`awk` is a programing langage interesting to process column oriented text file row by row directly on the command line.
+```
+# list all process and filter those owned by a given user
+ps -edf | awk '$1=="jprados"
+
+```
 
 ## `sed`
 
