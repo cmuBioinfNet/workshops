@@ -12,8 +12,7 @@
 
 ## make
 
-* Example makefile.star
-
+Create a `Makefile` with the following content:
 ```
 STAR_FLAGS := --genomeDir ref/GRCm38_85_index
 STAR_FLAGS += --outReadsUnmapped Fastx --outMultimapperOrder Random --outSAMmultNmax 1
