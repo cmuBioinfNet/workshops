@@ -1,13 +1,14 @@
 # Introduction
 
 
-# Map the reads
-Single cell Makefile:
+# Map single cell reads
+Use Makefile rules to:
  * Generate a FASTQ by putting UMI sequence found in _R1.fastq at the end of the header of _R2.fastq
  * Map the modified reads with STAR
+ * Index the sorted BAM with samtools index
  * Deduplicate reads with identical UMI with [umi_tools](https://github.com/CGATOxford/UMI-tools)
 
-
+## Makefile code
 ```
 STAR_FLAGS := --genomeDir ref/GRCm38_85_index
 STAR_FLAGS += --outReadsUnmapped Fastx --outMultimapperOrder Random --outSAMmultNmax 1
@@ -22,6 +23,11 @@ STAR_FLAGS += --outReadsUnmapped Fastx --outMultimapperOrder Random --outSAMmult
 %.star.bam:%.star/Aligned.sortedByCoord.out.bam; ln -s $(notdir $*).star/Aligned.sortedByCoord.out.bam $@
 %.star.bam.bai:%.star.bam; module add UHTS/Analysis/samtools/0.1.19;samtools index $^
 %.star.umitools_dedup.bam:%.star.bam %.star.bam.bai; umi_tools dedup -I $< -S $@
+```
+
+## Run makefile
+```
+find dir/ -name *_R1.fastq | sed s/_R1.fastq/_umi.star.umitools_dedup.bam/ | xargs make
 ```
 
 
